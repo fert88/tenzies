@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./style.scss";
 import { nanoid } from 'nanoid';
 import Dice from "./Dice";
+import Confetti from "react-confetti";
 function App() {
   function generateDice(){
     return{
@@ -24,7 +25,7 @@ function App() {
     const firstValue = dice[0].value
     const allSameValue = dice.every(die => die.value === firstValue)
     if (allHeld && allSameValue) {
-        setFinish(true)
+      setFinish(true)      
     }
     
   },[dice])
@@ -55,7 +56,10 @@ function App() {
   return (
     <div className="app">
       <div className="container">
+        
         <div className="content">
+          
+          {finish && <Confetti width={520} height={520} /> }
           <h1>Tenzies</h1>
           <p>Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
           <div className="dice-container">
